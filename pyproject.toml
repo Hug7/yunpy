@@ -1,0 +1,59 @@
+[build-system]
+requires = ["poetry-core>=2.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+name = "yunpy"
+version = "0.1.0"
+description = "Python caller for the project \"yun\" — domain models for logistics optimization."
+authors = ["yunpy contributors"]
+license = "Apache-2.0"
+readme = "README.md"
+packages = [{ include = "yunpy", from = "src" }]
+
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: Apache Software License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Topic :: Scientific/Engineering",
+]
+
+[tool.poetry.dependencies]
+python = ">=3.11,<4.0"
+pandas = "^3.0.3"
+
+[tool.poetry.group.dev.dependencies]
+pytest = ">=8.0"
+ruff = ">=0.8"
+mypy = ">=1.14"
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "W", "UP"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+
+[tool.ruff.lint.isort]
+known-first-party = ["yunpy"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+# Relax strict for now; tighten as the codebase matures
+disallow_untyped_defs = false
+disallow_incomplete_defs = false
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
